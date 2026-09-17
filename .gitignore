@@ -1,0 +1,11 @@
+# Household financial records stay outside the public repository.
+PLANNING.md
+data/
+reports/
+.env
+.env.*
+!.env.example
+*.sqlite*
+__pycache__/
+.venv/
+opensrc/

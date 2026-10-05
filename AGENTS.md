@@ -41,3 +41,6 @@ Copy only code justified by a concrete requirement; retain MIT copyright/license
 - Keep personal data in ignored `PLANNING.md`, `data/`, `reports/`, or the private vault. Use synthetic test fixtures in Git.
 - Before commits inspect status, diff, staged diff, and recent history. Stage intended files explicitly. Commit/push only when requested; never force-push or alter Git configuration.
 - Use Obsidian MCP for the project journal. Search existing notes before creating one; preserve historical content and label superseded directions.
+- Treat the Drive `Keuangan (Finance)` folder as a source registry: read-only first, preserve file IDs and statement periods, and do not move or overwrite source documents.
+- Reconcile one complete statement period against ERPNext before broad import. Distinguish bank/card statements, receipts, investment snapshots, and accounting records; transfers between them are not expenses or returns.
+- ERPNext reads are permitted for analysis; posting or modifying ERPNext documents requires explicit authorization in the request.

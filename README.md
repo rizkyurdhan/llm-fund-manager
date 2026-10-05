@@ -4,7 +4,7 @@ Personal, long-term investment planning and portfolio research. Standalone appli
 
 ## Status
 
-Documentation stage, 2026-09-17. No application, broker connection, or scheduled service implemented. No upstream application code copied. Household records belong in private Sheets, Obsidian, and ignored local files, not this public repository.
+Early implementation stage. A stdlib-only, read-only portfolio snapshot calculation and check exist; no live importer, broker connection, or scheduled service is implemented. No upstream application code copied. Household records belong in private Sheets, Obsidian, and ignored local files, not this public repository.
 
 ## Proposed architecture
 
@@ -39,13 +39,28 @@ Python + SQLite + Markdown is the proposed starting stack. Provider and data API
 
 ## First milestone
 
-1. Import a dated Sheets snapshot, preserving household ownership and product types.
-2. Validate amounts, dates, missing fields, and duplicate-import behavior.
-3. Produce allocation and explicit stress scenarios with source references.
-4. Generate a sourced LLM memo without inventing missing facts.
-5. Save a report and decision record; verify malformed input, unchanged reimports, and LLM failure paths.
+1. Register the `Keuangan (Finance)` Drive sources without copying statements into Git.
+2. Import a dated Sheets snapshot, preserving household ownership and product types.
+3. Validate amounts, dates, missing fields, and duplicate-import behavior.
+4. Produce allocation and explicit stress scenarios with source references.
+5. Reconcile one complete monthly cash-flow period against ERPNext without posting changes.
+6. Generate a sourced LLM memo without inventing missing facts.
+7. Save a report and decision record; verify malformed input, unchanged reimports, and LLM failure paths.
 
-Retirement projection follows once expense assumptions are available. Contribution recommendations require an approved target allocation and actual available cash. Scheduling follows a reliable manual run.
+Current source boundary: Drive contains `Finance_Statements` with a catalog and monthly folders, `Investasi` with the ETF snapshot, `Transaksi` with receipt records, `Pajak & Transaksi`, and `Bank Statements`. BCA is confirmed reconciled for June and July 2026; the earlier July gap was caused by an incorrect account-name query, not missing BCA evidence. Do not infer missing months or treat receipt files as a complete ledger.
+
+The first calculation check can be run with `PYTHONPATH=. python3 tests/check_portfolio_snapshot.py`. Retirement projection follows once expense assumptions are available. Contribution recommendations require an approved target allocation and actual available cash. Scheduling follows a reliable manual run.
+
+## First data run
+
+Use the statement catalog to select one complete month and produce a read-only reconciliation table:
+
+- Bank and card sources expected for the month.
+- Statement period, source file, closing balance or payable, and extraction status.
+- ERPNext account/transaction coverage for the same period.
+- Unresolved gaps, duplicates, transfers, and ownership questions.
+
+No Drive files are moved or edited. No ERPNext entries are created or changed. A failed extraction remains failed; it must not become a zero balance. July 2026 BCA is confirmed reconciled; the remaining period-completion work is cross-source validation for the other banks and cards.
 
 ## Source reference
 

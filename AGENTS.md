@@ -37,7 +37,7 @@ Copy only code justified by a concrete requirement; retain MIT copyright/license
 - No speculative plugin systems, multi-agent teams, dashboards, or runtime `opensrc` integration.
 - Add a `ponytail:` comment for deliberate implementation ceilings and the condition requiring an upgrade.
 - Nontrivial logic must leave one small runnable check. Test meaningful invariants: ownership totals, repeat imports, malformed input, financial arithmetic, and LLM failure handling.
-- No application or test command exists yet. Document real commands when implemented; never report unrun tests as passing.
+- Run `PYTHONPATH=. python3 tests/check_portfolio_snapshot.py` or, after the README Docker setup, `docker compose run --rm fund-manager`. No lint or typecheck command is configured. Never report unrun tests as passing.
 - Keep personal data in ignored `PLANNING.md`, `data/`, `reports/`, or the private vault. Use synthetic test fixtures in Git.
 - Before commits inspect status, diff, staged diff, and recent history. Stage intended files explicitly. Commit/push only when requested; never force-push or alter Git configuration.
 - Use Obsidian MCP for the project journal. Search existing notes before creating one; preserve historical content and label superseded directions.

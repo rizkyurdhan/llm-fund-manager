@@ -49,7 +49,19 @@ Python + SQLite + Markdown is the proposed starting stack. Provider and data API
 
 Current source boundary: Drive contains `Finance_Statements` with a catalog and monthly folders, `Investasi` with the ETF snapshot, `Transaksi` with receipt records, `Pajak & Transaksi`, and `Bank Statements`. BCA is confirmed reconciled for June and July 2026; the earlier July gap was caused by an incorrect account-name query, not missing BCA evidence. Do not infer missing months or treat receipt files as a complete ledger.
 
-The first calculation check can be run with `PYTHONPATH=. python3 tests/check_portfolio_snapshot.py`. Retirement projection follows once expense assumptions are available. Contribution recommendations require an approved target allocation and actual available cash. Scheduling follows a reliable manual run.
+The first calculation check can be run with `PYTHONPATH=. python3 tests/check_portfolio_snapshot.py`. The same check runs in Docker with `docker compose run --rm fund-manager`. Retirement projection follows once expense assumptions are available. Contribution recommendations require an approved target allocation and actual available cash. Scheduling follows a reliable manual run.
+
+## Deployment
+
+Docker packages the current calculation check and provides a repeatable deployment shape. It is not yet a web service or scheduler. Keep private records in the ignored `data/`, `reports/`, and `PLANNING.md` paths; they are bind-mounted or restored separately and are intentionally not copied into the image.
+
+```bash
+mkdir -p data reports
+LOCAL_UID=$(id -u) LOCAL_GID=$(id -g) docker compose build
+LOCAL_UID=$(id -u) LOCAL_GID=$(id -g) docker compose run --rm fund-manager
+```
+
+For recovery on another computer, clone the repository, restore the separately backed-up `PLANNING.md`, `data/`, and `reports/`, then run the same commands. Store Docker credentials and any future `.env` secrets in a password manager or secret store, never in Git. Docker is not a backup; keep an encrypted copy off this computer.
 
 ## First data run
 

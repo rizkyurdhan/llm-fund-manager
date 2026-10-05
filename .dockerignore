@@ -1,0 +1,6 @@
+**
+!Dockerfile
+!src/
+!src/*.py
+!tests/
+!tests/check_portfolio_snapshot.py

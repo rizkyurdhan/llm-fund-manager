@@ -102,5 +102,11 @@ Reference review is focused, not a full audit. Current reuse is conceptual only.
 ## Documentation
 
 - [AGENTS.md](AGENTS.md): working rules for coding agents.
+- [PRD](docs/PRD.md): product goals, scope, requirements, and acceptance criteria.
+- [Architecture](docs/ARCHITECTURE.md): components, data flow, trust boundaries, and deployment shape.
+- [Data model](docs/DATA_MODEL.md): entities, provenance, and financial invariants.
+- [Operations](docs/OPERATIONS.md): local/Docker run, backup, restore, and incident procedures.
+- [Security](docs/SECURITY.md): sensitive data, repository/runtime controls, integrations, and threat response.
+- [Decisions](docs/DECISIONS.md): architecture and scope decisions with rationale.
 - `PLANNING.md`: private, ignored local household baseline. Not distributed with this repository.
 - Obsidian: private project journal and source links; no automatic bidirectional synchronization promised.
